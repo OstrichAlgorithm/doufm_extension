@@ -1,6 +1,7 @@
+var v=document.getElementById("media");
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
 	console.log(message);
-	var v=document.getElementById("media");
+	//var v=document.getElementById("media");
 	
 	if(message=="play"){
 		v.play();
@@ -14,3 +15,15 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
 	
 	
 });
+
+
+
+
+v.addEventListener("ended",function(){
+	
+	chrome.runtime.sendMessage("over", function(response){
+ 		
+				});
+		
+});
+

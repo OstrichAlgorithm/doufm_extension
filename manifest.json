@@ -1,6 +1,6 @@
 {
      "manifest_version": 2,
-    "name": "doufm",
+    "name": "doufm_extension",
     "version": "1.0",
     "description": "doufm的chrome插件",
     "icons": {

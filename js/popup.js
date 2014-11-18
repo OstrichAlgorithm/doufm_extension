@@ -62,4 +62,18 @@ var player = {
 }
 
 
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
+	console.log(message);
+	//var v=document.getElementById("media");
+	
+	if(message=="over"){
+		var key =$("select").val();	
+			  console.log(key);
+			  player.getPalyLists(key);
+	}
+	
+	
+	
+});
+
 player.init();
