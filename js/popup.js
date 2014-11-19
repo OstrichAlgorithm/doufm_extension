@@ -1,15 +1,16 @@
 var player = {
 	domain:"http://doufm.info",
 	apiPalyList:"/api/playlist/",
+	listSize:"/?num=10",
 	getPalyLists:function(key){
 		$.ajax({
 		   type: "GET",
-		   url: this.domain+this.apiPalyList+key+"/?num=1",
+		   url: this.domain+this.apiPalyList+key+this.listSize,
 		   success: function(msg){	   
 		   	 console.log("lists");
-		   	 console.log(player.domain+msg[0].audio);
-		   		chrome.runtime.sendMessage(player.domain+msg[0].audio, function(response){
+		   		chrome.runtime.sendMessage(msg, function(response){
     				//document.write(response);
+    				 console.log(response);
 				});
 		   }
 		});
@@ -44,36 +45,14 @@ var player = {
 				$(this).attr("value","1");
 			}
 			chrome.runtime.sendMessage(msg, function(response){
- 		
 				});
 		});
-		
-		
 		
 		$("#next").on("click",function(){
 			var key =$("select").val();	
 			  console.log(key);
 			  player.getPalyLists(key);
-		});
-		
-		
-		
+		});	
 	}
 }
-
-
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
-	console.log(message);
-	//var v=document.getElementById("media");
-	
-	if(message=="over"){
-		var key =$("select").val();	
-			  console.log(key);
-			  player.getPalyLists(key);
-	}
-	
-	
-	
-});
-
 player.init();
