@@ -21,6 +21,9 @@
         
     },
     "permissions": [
-        "http://doufm.info/*"
+        "http://doufm.info/*",
+         "downloads"
     ]
+    
+  
 }

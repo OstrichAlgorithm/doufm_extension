@@ -6,7 +6,7 @@ var player = {
 		$.ajax({
 		   type: "GET",
 		   url: this.domain+this.apiPalyList+key+this.listSize,
-		   success: function(msg){	   
+		   success: function(msg){
 		   	 console.log("lists");
 		   		chrome.runtime.sendMessage(msg, function(response){
     				//document.write(response);
@@ -15,6 +15,7 @@ var player = {
 		   }
 		});
 	},
+	
 	clearPlayList:function(){
 		var msg = "clear";
 		chrome.runtime.sendMessage(msg, function(response){
@@ -22,7 +23,7 @@ var player = {
     				 console.log(response);
 				});
 	},
-	
+
 	init:function(){
 		$.ajax({
 		   type: "GET",
@@ -61,6 +62,16 @@ var player = {
 			  console.log(key);
 			  player.getPalyLists(key);
 		});	
+		
+		
+		$("#download").on("click",function(){
+			var msg ="download";
+			chrome.runtime.sendMessage(msg, function(response){
+    				//document.write(response);
+    				 console.log(response);
+				});	
+		});	
+		
 	}
 }
 player.init();

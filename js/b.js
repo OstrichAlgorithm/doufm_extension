@@ -9,6 +9,24 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
 	}else if(message=="clear"){
 		$("#media").html("");
 		sendResponse("clear list ok");	
+	}else if(message=="download"){
+		var s =document.getElementsByTagName("source");
+		
+		var src =s[count-1].src;
+		var title =s[count-1].dataset.title;
+		var artist =s[count-1].dataset.artist;
+		
+		
+		chrome.downloads.download({
+		    url: src,
+		    filename: title+"-"+artist+".mp3",
+		    saveAs:true,
+			},
+			function(){
+				
+				
+			});
+		sendResponse("download "+ title+"-"+artist+".mp3");	
 	}else{
 		var domain="http://doufm.info";
 		var s =document.getElementsByTagName("source");
@@ -22,6 +40,8 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
 						//$("#media").append("<source src='"+domain+message[i].audio+"' type='audio/mp3'>");
 							var node = document.createElement("source");	
 							node.src = domain+message[i].audio;
+							node.dataset.title=message[i].title;
+							node.dataset.artist =message[i].artist;
 							node.type = "audio/mp3";	
 							v.appendChild(node);
 			 }
