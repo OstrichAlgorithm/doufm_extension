@@ -15,6 +15,13 @@ var player = {
 		   }
 		});
 	},
+	clearPlayList:function(){
+		var msg = "clear";
+		chrome.runtime.sendMessage(msg, function(response){
+    				//document.write(response);
+    				 console.log(response);
+				});
+	},
 	
 	init:function(){
 		$.ajax({
@@ -30,6 +37,7 @@ var player = {
 		$("select").change(function(){
 			   var key =$("select").val();	
 			  console.log(key);
+			  player.clearPlayList();
 			  player.getPalyLists(key);
 			
 		});

@@ -6,6 +6,9 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse){
 		v.play();
 	}else if(message=="pause"){
 		v.pause();
+	}else if(message=="clear"){
+		$("#media").html("");
+		sendResponse("clear list ok");	
 	}else{
 		var domain="http://doufm.info";
 		var s =document.getElementsByTagName("source");
